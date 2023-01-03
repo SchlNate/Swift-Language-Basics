@@ -20,7 +20,6 @@ jobs:
     runs-on: ubunto-latest
     
     steps:
-      - name: Checkout and create new branch
       - uses: actions/checkout@v3
       
       - run: | 
