@@ -30,20 +30,6 @@ jobs:
         ref: master
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Confirm new branch doesn't exist
-      shell: bash
-      run: |
-        giturl=$(git ls-remote --get-url)
-        echo $giturl
-        git ls-remote --exit-code --heads \
-        $giturl ${{ inputs.BRANCH_NAME }} >/dev/null 2>&1
-        
-        if [$? -eq 0]; then
-          echo "Branch does exist"
-        elif [$? -eq 2]; then
-          echo "Branch does not exist"
-        fi
-
     - name: Configure Git
       shell: bash
       run: |
