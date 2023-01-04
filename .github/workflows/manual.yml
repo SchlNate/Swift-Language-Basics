@@ -28,7 +28,7 @@ jobs:
       run: |
         giturl=$(git ls-remote --get-url)
         git ls-remote --exit-code --heads \
-        ${{ env.giturl }} ${{ inputs.BRANCH_NAME }}
+        $giturl ${{ inputs.BRANCH_NAME }}
         
         if [$? -eq 0]; then
           echo "Found existing branch"
