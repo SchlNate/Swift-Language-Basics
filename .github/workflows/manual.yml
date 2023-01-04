@@ -30,8 +30,8 @@ jobs:
         git ls-remote --exit-code --heads \
         $giturl ${{ inputs.BRANCH_NAME }}
         
-        if [$? -eq 0]; then
-          echo "Found existing branch"
+        if [$? -eq 2]; then
+          echo "Branch does not exist"
         fi
 
     - name: Checkout
