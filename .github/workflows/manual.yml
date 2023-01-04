@@ -29,6 +29,21 @@ jobs:
         fetch-depth: 0
         ref: master
         token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Confirm new branch doesn't exist
+      shell: bash
+      run: |
+        giturl=$(git ls-remote --get-url)
+        echo $giturl
+        git ls-remote --exit-code --heads \
+        $giturl ${{ inputs.BRANCH_NAME }} > /dev/null 2>&1
+        EXIT_CODE=$?
+        
+        if [[ $EXIT_CODE == '0' ]]; then
+          echo "Git branch '${{ inputs.BRANCH_NAME }}' exists in the remote repository"
+        elif [[ $EXIT_CODE == '2' ]]; then
+          echo "Git branch '${{ inputs.BRANCH_NAME }}' does not exist in the remote repository"
+        fi
 
     - name: Configure Git
       shell: bash
