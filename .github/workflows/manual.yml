@@ -39,7 +39,7 @@ jobs:
         $giturl ${{ inputs.BRANCH_NAME }})
 
         echo $already_exists
-        if [[ -z ${already_exists ]]; then
+        if [[ -z ${already_exists} ]]; then
           echo "Git branch '${{ inputs.BRANCH_NAME }}' exists in the remote repository"
           exit 2
         fi
