@@ -36,7 +36,7 @@ jobs:
         giturl=$(git ls-remote --get-url)
         echo $giturl
         git ls-remote --exit-code --heads \
-        $giturl ${{ inputs.BRANCH_NAME }} 2> /dev/null || true
+        $giturl ${{ inputs.BRANCH_NAME }} 2> /dev/null || 2
         EXIT_CODE=$?
         
         if [[ $EXIT_CODE == '0' ]]; then
