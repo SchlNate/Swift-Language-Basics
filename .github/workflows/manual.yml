@@ -26,8 +26,9 @@ jobs:
     - name: Confirm new branch doesn't exist
       shell: bash
       run: |
+        giturl=$(git ls-remote --git-url)
         git ls-remote --exit-code --heads \
-        ${{ github.repository }} ${{ inputs.BRANCH_NAME }}
+        ${{ env.giturl }} ${{ inputs.BRANCH_NAME }}
         
         if [$? -eq 0]; then
           echo "Found existing branch"
