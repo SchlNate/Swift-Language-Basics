@@ -20,9 +20,9 @@ jobs:
     runs-on: ubunto-latest
     
     steps:
-      - uses: actions/checkout@v3
-      
-      - run: | 
-          git checkout master \
-          git branch ${{ github.event.inputs.branchName }} \ 
-          git push
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: master
+          token: ${{ secrets.GITHUB_TOKEN }}
