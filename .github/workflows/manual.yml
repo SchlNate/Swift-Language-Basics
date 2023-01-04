@@ -26,7 +26,7 @@ jobs:
     - name: Confirm new branch doesn't exist
       shell: bash
       run: |
-        giturl=$(git ls-remote --git-url)
+        giturl=$(git ls-remote --get-url)
         git ls-remote --exit-code --heads \
         ${{ env.giturl }} ${{ inputs.BRANCH_NAME }}
         
