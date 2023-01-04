@@ -27,6 +27,7 @@ jobs:
       shell: bash
       run: |
         giturl=$(git ls-remote --get-url)
+        echo $giturl
         git ls-remote --exit-code --heads \
         $giturl ${{ inputs.BRANCH_NAME }}
         
