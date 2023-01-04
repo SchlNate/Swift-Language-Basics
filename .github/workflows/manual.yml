@@ -8,12 +8,9 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
-      name:
-        # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
-        # Default value if no value is explicitly provided
-        default: 'World'
-        # Input has to be provided for the workflow to run
+      BRANCH_NAME:
+        description: 'New Branch Name'
+        default: 'release'
         required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -32,3 +29,16 @@ jobs:
         fetch-depth: 0
         ref: master
         token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Configure Git
+      shell: bash
+      run: |
+        git config --global user.email github-actions@github.com
+        git config --global user.name github-actions
+
+    - name: Create new branch
+      shell: bash
+      run: |
+        git status
+        git checkout -b ${{ inputs.BRANCH_NAME }}
+        git push
