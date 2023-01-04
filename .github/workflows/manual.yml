@@ -23,6 +23,16 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Runs a single command using the runners shell
+    - name: Confirm new branch doesn't exist
+      shell: bash
+      run: |
+        git ls-remote --exit-code --heads \
+        ${{ github.repository }} ${{ inputs.BRANCH_NAME }}
+        
+        if [$? -eq 0]; then
+          echo "Found existing branch"
+        fi
+
     - name: Checkout
       uses: actions/checkout@v3
       with:
@@ -41,4 +51,4 @@ jobs:
       run: |
         git status
         git checkout -b ${{ inputs.BRANCH_NAME }}
-        git push
+        git push --set-upstream origin ${{ inputs.BRANCH_NAME }}
