@@ -17,9 +17,13 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   newBranch:
+    name: Call New Branch
     runs-on: ubunto-latest
-    
     steps:
+      - name: Echo something
+        shell: bash
+        run: echo "This is a test"
+        
       - name: Checkout
         uses: actions/checkout@v3
         with:
