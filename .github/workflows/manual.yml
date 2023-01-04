@@ -22,11 +22,5 @@ jobs:
     steps:
       - name: Echo something
         shell: bash
-        run: echo "This is a test"
-        
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          ref: master
-          token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "This is a test"
