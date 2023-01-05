@@ -24,6 +24,11 @@ jobs:
         ref: master
         token: ${{ secrets.GITHUB_TOKEN }}
         
+    - name: Check if bug
+      if: github.event.issue.labels[0].name != 'bug'
+      shell: bash
+      run: exit 2
+        
     - name: Confirm new branch doesn't exist
       shell: bash
       run: |
