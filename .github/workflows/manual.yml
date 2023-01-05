@@ -27,7 +27,7 @@ jobs:
     - name: Confirm new branch doesn't exist
       shell: bash
       run: |
-        echo ${{ github.event.issue.labels }}
+        echo ${{ github.event.issue.labels[0] }}
         giturl=$(git ls-remote --get-url)
         echo $giturl
         already_exists=$(git ls-remote --heads \
