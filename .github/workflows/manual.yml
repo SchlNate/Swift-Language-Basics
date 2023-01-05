@@ -1,15 +1,15 @@
 name: Create Release Candidate (QA)
 
+inputs:
+  BRANCH_NAME:
+    description: 'New Branch Name'
+    default: 'release'
+    required: true
 on:
   issues:
     types:
       - opened
     # Inputs the workflow accepts.
-    inputs:
-      BRANCH_NAME:
-        description: 'New Branch Name'
-        default: 'release'
-        required: true
 
 jobs:
   prepare_release_candidate:
@@ -29,7 +29,7 @@ jobs:
     - name: Confirm new branch doesn't exist
       shell: bash
       run: |
-        echo 
+        echo ${{ github.event.issue.labels }}
         giturl=$(git ls-remote --get-url)
         echo $giturl
         already_exists=$(git ls-remote --heads \
