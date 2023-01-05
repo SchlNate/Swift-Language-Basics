@@ -1,15 +1,13 @@
 name: Create Release Candidate (QA)
 
-inputs:
-  BRANCH_NAME:
-    description: 'New Branch Name'
-    default: 'release'
-    required: true
 on:
   issues:
     types:
       - opened
     # Inputs the workflow accepts.
+    
+env:
+  BRANCH_NAME: release
 
 jobs:
   prepare_release_candidate:
