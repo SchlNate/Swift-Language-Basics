@@ -39,8 +39,9 @@ jobs:
         $giturl ${{ inputs.BRANCH_NAME }})
 
         echo $already_exists
-        if [ -z "$already_exists" ]; then
-          echo "Git branch '${{ inputs.BRANCH_NAME }}' exists in the remote repository"
+        if [ "$already_exists" ]; then
+          echo "Git branch '${{ inputs.BRANCH_NAME }}' exists in the remote repository."
+          echo "Remove origin/'${{ inputs.BRANCH_NAME }}' and re-run this action to proceed."
           exit 2
         fi
 
