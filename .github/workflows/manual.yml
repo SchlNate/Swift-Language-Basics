@@ -1,7 +1,9 @@
 name: Create Release Candidate (QA)
 
 on:
-  workflow_dispatch:
+  issues:
+    types:
+      - opened
     # Inputs the workflow accepts.
     inputs:
       BRANCH_NAME:
@@ -27,6 +29,7 @@ jobs:
     - name: Confirm new branch doesn't exist
       shell: bash
       run: |
+        echo 
         giturl=$(git ls-remote --get-url)
         echo $giturl
         already_exists=$(git ls-remote --heads \
