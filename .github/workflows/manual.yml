@@ -11,6 +11,7 @@ env:
 
 jobs:
   prepare_release_candidate:
+    if: contains(github.event.issue.labels.*.name, 'bug')
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -23,11 +24,6 @@ jobs:
         fetch-depth: 0
         ref: master
         token: ${{ secrets.GITHUB_TOKEN }}
-        
-    - name: Check if bug
-      if: github.event.issue.labels[0].name != 'bug'
-      shell: bash
-      run: exit 2
         
     - name: Confirm new branch doesn't exist
       shell: bash
